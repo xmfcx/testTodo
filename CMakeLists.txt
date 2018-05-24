@@ -74,7 +74,7 @@ set(CMAKE_AUTORCC ON) # Resource files
 set(CMAKE_AUTOUIC ON) # UI files
 
 
-find_package(Qt5 COMPONENTS Widgets Qml Quick QuickWidgets QuickControls2 REQUIRED)
+find_package(Qt5 COMPONENTS Widgets QuickWidgets Qml Quick QuickWidgets QuickControls2 REQUIRED)
 
 
 add_executable(wow_exe main.cpp
@@ -90,6 +90,7 @@ add_executable(wow_exe main.cpp
 target_link_libraries(wow_exe
         Qt5::Quick
         Qt5::Widgets
+        Qt5::QuickWidgets
         )
 
 

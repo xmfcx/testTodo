@@ -6,6 +6,7 @@
 
 #include "todolist.h"
 #include "todomodel.h"
+#include <QQuickWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -19,20 +20,21 @@ MainWindow::MainWindow(QWidget *parent) :
                                          "ToDoList should not be created in QML"));
 
 
-  QQuickView *qmlView = new QQuickView();
+//  QQuickView *qmlView = new QQuickView();
 
+  QQuickWidget *quickWidget = new QQuickWidget();
   ToDoList toDoList;
 
-  qmlView->rootContext()->setContextProperty(QStringLiteral("toDoList"),
+  quickWidget->rootContext()->setContextProperty(QStringLiteral("toDoList"),
                                              &toDoList);
 
-  QWidget *container = QWidget::createWindowContainer(qmlView, this);
-  qmlView->setMinimumHeight(300);
-  qmlView->setSource(QUrl(QLatin1String("qrc:/ToDoList.qml")));
-  container->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+//  QWidget *container = QWidget::createWindowContainer(quickWidget, this);
+  quickWidget->setMinimumHeight(300);
+  quickWidget->setSource(QUrl(QLatin1String("qrc:/ToDoList.qml")));
+  quickWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 
   QHBoxLayout *layout = new QHBoxLayout;
-  layout->insertWidget(0,container);
+  layout->insertWidget(0,quickWidget);
   ui->centralWidget->setLayout(layout);
 }
 
